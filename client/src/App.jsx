@@ -5,15 +5,13 @@ import DarkModeToggle from "./components/DarkModeToggle";
 
 const App = () => {
   return (
-    <div className="bg-blue-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <Router>
-        <DarkModeToggle />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/quiz/:week" element={<Quiz />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <DarkModeToggle />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/quiz/:week" element={<Quiz />} />
+      </Routes>
+    </Router>
   );
 };
 

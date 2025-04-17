@@ -10,12 +10,12 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-blue-50 dark:bg-gray-900">
-      {/* Main content centered vertically */}
-      <div className="flex-grow flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen w-screen flex flex-col bg-blue-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+      {/* Main Content */}
+      <div className="flex-grow flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-6 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-blue-800 dark:text-blue-300">
-            Cognitive Psychology 2025
+           Cognitive Psychology 2025
           </h1>
 
           <select
@@ -25,7 +25,9 @@ const Landing = () => {
           >
             <option value="">Select Week</option>
             {[...Array(12).keys()].map((i) => (
-              <option key={i} value={`week-${i + 1}`}>Week {i + 1}</option>
+              <option key={i} value={`week-${i + 1}`}>
+                Week {i + 1}
+              </option>
             ))}
             <option value="first-6">First 6 Weeks</option>
             <option value="last-6">Last 6 Weeks</option>
@@ -41,9 +43,8 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Sticky footer at bottom */}
+      {/* Footer */}
       <footer className="text-sm text-center text-gray-500 dark:text-gray-400 p-4">
-        Disclaimer: All answers might not be accurate.<br />
         Made by <strong>Aditya Rajput</strong> and <strong>Moksh Udeshi</strong>
       </footer>
     </div>

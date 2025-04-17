@@ -49,24 +49,34 @@ const Quiz = () => {
   const allAnswered = Object.keys(answers).length === questions.length;
 
   return (
-    <div className="min-h-screen px-4 py-6 bg-blue-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-center">
+    <div className="min-h-screen w-screen flex flex-col items-center justify-start bg-blue-50 dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-8">
+      <div className="w-full max-w-3xl space-y-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-blue-800 dark:text-blue-300">
           Quiz: {week.replace(/-/g, " ").toUpperCase()}
         </h2>
 
         {questions.map((q, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md space-y-3">
-            <p className="font-semibold">{index + 1}. {q.question}</p>
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md space-y-3"
+          >
+            <p className="font-semibold">
+              {index + 1}. {q.question}
+            </p>
             {q.options.map((opt, i) => {
               const selected = answers[index];
               const isCorrect = opt === q.answer;
               const isSelected = selected === opt;
 
-              let optionStyle = "bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600";
+              let optionStyle =
+                "bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600";
               if (selected) {
-                if (isCorrect) optionStyle = "bg-green-200 text-green-900 dark:bg-green-700 dark:text-green-100";
-                else if (isSelected) optionStyle = "bg-red-200 text-red-900 dark:bg-red-700 dark:text-red-100";
+                if (isCorrect)
+                  optionStyle =
+                    "bg-green-200 text-green-900 dark:bg-green-700 dark:text-green-100";
+                else if (isSelected)
+                  optionStyle =
+                    "bg-red-200 text-red-900 dark:bg-red-700 dark:text-red-100";
               }
 
               return (
