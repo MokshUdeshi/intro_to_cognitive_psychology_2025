@@ -17,7 +17,7 @@ const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
 
-  useEffect(() => {
+  const loadQuestions = () => {
     let selectedQuestions = [];
     if (week === "first-6") {
       for (let i = 1; i <= 6; i++) {
@@ -35,12 +35,23 @@ const Quiz = () => {
       selectedQuestions = questionsData[week] || [];
     }
     setQuestions(shuffleArray(selectedQuestions));
+  };
+
+  useEffect(() => {
+    loadQuestions();
   }, [week]);
 
   const handleAnswer = (qIndex, selectedOption) => {
     if (answers[qIndex]) return;
     setAnswers({ ...answers, [qIndex]: selectedOption });
   };
+
+  const restartQuiz = () => {
+    setAnswers({});
+    loadQuestions(); // reshuffle and reset questions
+    window.scrollTo({ top: 0, behavior: "smooth" }); // scrolls smoothly to top
+  };
+  
 
   const score = Object.entries(answers).filter(
     ([index, ans]) => questions[index]?.answer === ans
@@ -93,16 +104,24 @@ const Quiz = () => {
         ))}
 
         {allAnswered && (
-          <div className="text-center mt-6">
-            <h3 className="text-lg font-bold mb-4">
+          <div className="text-center mt-6 space-y-4">
+            <h3 className="text-lg font-bold">
               Your Score: {score} / {questions.length}
             </h3>
-            <button
-              onClick={() => navigate("/")}
-              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-medium transition"
-            >
-              Go to Landing Page
-            </button>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <button
+                onClick={restartQuiz}
+                className="px-5 py-2 bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700 text-white rounded-lg font-medium transition"
+              >
+                Restart Quiz
+              </button>
+              <button
+                onClick={() => navigate("/")}
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-medium transition"
+              >
+                Go to Landing Page
+              </button>
+            </div>
           </div>
         )}
       </div>
